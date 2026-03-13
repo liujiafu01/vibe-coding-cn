@@ -193,3 +193,50 @@ When modifying this repository:
     ├── telegram-dev/            # Telegram Bot 开发技能。
     └── ... (其他 10+ 个技能)
 ```
+
+---
+
+# COPILOT.md - GitHub Copilot 上下文文档 (GitHub Copilot Context Document)
+
+This file provides guidance to GitHub Copilot when working with code in this repository.
+
+## 项目概述 (Project Overview)
+
+`vibe-coding-cn` 是一个面向 AI 辅助编程的工作流程、工具集与知识库。项目的核心资产是丰富的 `prompts`（提示词）和 `skills`（技能）库，旨在帮助开发者通过与 AI 结对编程，将想法高效落地。
+
+**你是 GitHub Copilot**，一款由 GitHub 与 OpenAI 联合打造的 AI 代码助手。在本仓库中，你的角色是辅助开发者维护、扩展提示词库、技能库及相关文档与工具。
+
+## 核心目录 (Core Directories)
+
+- **`i18n/zh/prompts/`**: 提示词库，按角色分为 `coding_prompts/`、`system_prompts/`、`user_prompts/`、`meta_prompts/`。
+- **`i18n/zh/skills/`**: 模块化技能库，每个技能目录包含独立的 `SKILL.md`。
+- **`i18n/zh/documents/`**: 项目知识库，包含方法论、原则和指南。
+- **`libs/external/prompts-library/`**: 提示词 Excel ↔ Markdown 互转工具（Python）。
+- **`backups/`**: 项目备份脚本。
+
+## 常用命令 (Key Commands)
+
+```bash
+# 校验所有 Markdown 文件
+make lint
+
+# 运行提示词库转换工具
+cd libs/external/prompts-library && python3 main.py
+
+# 项目备份
+bash backups/一键备份.sh
+```
+
+## 开发规范 (Development Guidelines)
+
+1. **文档语言**: 用户向文档使用中文；代码符号（函数/变量/模块）使用英文。
+2. **提示词组织**: 提示词文件名遵循 `(row,col)_` 前缀分类规范。
+3. **新增文档**: 修改 Markdown 文件后请运行 `make lint` 确保格式合规。
+4. **模块边界**: 新增模块保持单一职责，避免跨层调用。
+5. **依赖管理**: 新增依赖需记录安装方式、最小版本与来源。
+
+## 注意事项 (Notes)
+
+- 本仓库支持多种 AI 模型（Claude、Gemini、GitHub Copilot 等），相关上下文文档统一维护在 `AGENTS.md` 中。
+- 提示词与技能的改动建议先通过 `prompts-library` 工具验证格式一致性。
+- 如需了解其他 AI 模型的上下文，参见本文件中的 `CLAUDE.md` 和 `GEMINI.md` 章节。
